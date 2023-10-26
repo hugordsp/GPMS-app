@@ -27,7 +27,7 @@ class AuthController extends Controller
                 'password' => 'required'
             ]);
 
-            if($validateUser->fails()){
+            if($validateUser->fails()) {
                 return response()->json([
                     'status' => false,
                     'message' => 'validation error',
@@ -44,13 +44,12 @@ class AuthController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'User Created Successfully',
-                'token' => $user->createToken("API TOKEN")->plainTextToken
             ], 200);
 
-        } catch (\Throwable $th) {
+        } catch (\Throwable $throwable) {
             return response()->json([
                 'status' => false,
-                'message' => $th->getMessage()
+                'message' => $throwable->getMessage()
             ], 500);
         }
     }

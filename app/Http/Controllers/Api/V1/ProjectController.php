@@ -12,7 +12,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        return new ProjectCollection(Project::paginate(2)); 
+        return new ProjectCollection(Project::paginate(5)); 
     }
 
     public function show(Project $project) 
@@ -23,7 +23,8 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $project = $request->validated();
-        $project['creator'] = 1;
+        $userId = $request->user()->id;
+        $project['creator'] = $userId;
         Project::create($project);
         return response()->json("Project created");
     }
