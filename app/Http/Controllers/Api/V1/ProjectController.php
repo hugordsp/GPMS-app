@@ -23,7 +23,7 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $project = $request->validated();
-        $project['creator'] = 3;
+        $project['creator'] = 1;
         Project::create($project);
         return response()->json("Project created");
     }
