@@ -12,7 +12,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        return new ProjectCollection(Project::paginate(5)); 
+        return new ProjectCollection(Project::with('creator')->paginate(5)); 
     }
 
     public function show(Project $project) 
